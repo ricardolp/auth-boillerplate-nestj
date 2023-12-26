@@ -48,7 +48,7 @@ export class TicketsService {
 
   async findAll(q: any) {
     const query = processQuery(q)
-    return await this.prisma.user.findMany({ where: query });
+    return await this.prisma.ticket.findMany({ where: query });
   }
 
   async findOne(id) {
