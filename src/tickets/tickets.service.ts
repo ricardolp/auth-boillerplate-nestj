@@ -13,7 +13,7 @@ export class TicketsService {
     const { empresa, centro_origem, centro_destino, portaria, processo,
       tipo_processo, parceiro, propriedade, cultura, deposito, safra,
       material, unidade_medida, placa_veiculo, placa_cavalo, tipo_veiculo,
-      nome_motorista, tipo_nf, numero_nf, serie_nf, chave_nf, userId } = createTicketDto;
+      nome_motorista, tipo_nf, numero_nf, serie_nf, chave_nf, status, integracao, userId } = createTicketDto;
 
     const ticket = await this.prisma.ticket.create({
       data: {
@@ -39,6 +39,8 @@ export class TicketsService {
         numero_nf: numero_nf || '',
         serie_nf: serie_nf || '',
         chave_nf: chave_nf || '',
+        status: status || '',
+        integracao: integracao || '',
         userId: userId,
       }
     });

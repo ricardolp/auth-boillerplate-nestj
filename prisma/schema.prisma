@@ -48,6 +48,8 @@ model Ticket {
   serie_nf       String
   chave_nf       String
   changed_by     String?
+  status         String?
+  integracao     String?
   created_at     DateTime? @default(now())
   updated_at     DateTime? @default(now())
   user           User?     @relation(fields: [userId], references: [id])

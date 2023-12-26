@@ -22,5 +22,7 @@ export class CreateTicketDto {
     numero_nf: string
     serie_nf: string
     chave_nf: string
+    integracao: string
+    status: string
     userId: string
 }
