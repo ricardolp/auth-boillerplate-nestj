@@ -3,6 +3,7 @@ import { TicketsService } from './tickets.service';
 import { CreateTicketDto } from './dto/create-ticket.dto';
 import { UpdateTicketDto } from './dto/update-ticket.dto';
 import { AuthGuard } from '../auth/auth.guard';
+import { deserialize, serialize } from 'class-transformer';
 import { Ticket } from './entities/ticket.entity';
 
 @UseGuards(AuthGuard)
@@ -24,8 +25,14 @@ export class TicketsController {
   }
 
   @Get()
-  findAll(@Query() q: string) {
-    return this.ticketsService.findAll(q);
+  async findAll(@Query() q: string) {
+    const tickets = serialize(await this.ticketsService.findAll(q));
+    
+    return {
+      statusCode: HttpStatus.OK,
+      message: 'ok',
+      data: deserialize(Ticket, tickets)
+   };
   }
 
   @Get(':id')
